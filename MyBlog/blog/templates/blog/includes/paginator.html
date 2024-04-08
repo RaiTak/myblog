@@ -1,0 +1,11 @@
+{% if page_obj.has_other_pages %}
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}&query={{ request.GET.query }}">Предыдущая</a>
+{% endif %}
+
+Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
+
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}&query={{ request.GET.query }}">Следующая</a>
+{% endif %}
+{% endif %}

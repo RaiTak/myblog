@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+{% load blog_tags %}
+
+{% block title %}Мой Блог{% endblock %}
+
+{% block content %}
+
+<p><a href="{% url 'blog:post-add' %}">Добавить статью</a></p>
+<hr>
+
+{% for post in posts %}
+    <li>
+        <h1>{{ post.title }}</h1>
+        <h4>{{ post.body|markdown|truncatewords_html:30}}</h4>
+        <p>Дата публикации: {{ post.publish }}</p>
+        <p>Автор: {{ post.author }}</p>
+        <p>Тэги: {{ post.tags.all|join:', '}}</p>
+        <p>Статус: {{ post.get_status_display }}</p>
+        <p><a href="{{ post.get_absolute_url }}">Подробнее...</a></p>
+        <hr>
+    </li>
+{% endfor %}
+
+{% include 'blog/includes/paginator.html' %}
+
+{% endblock %}

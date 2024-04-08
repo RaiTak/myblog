@@ -1,0 +1,13 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Поделиться{% endblock %}
+
+{% block content %}
+<h1>Поделиться "{{ post.title }}" по электронной почте</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <p><button type="submit">Отправить</button></p>
+</form>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Успешная отправка письма{% endblock %}
+
+{% block content %}
+<h1>Вы успешно отправили письмо!</h1>
+<h2><a href="{% url 'main:home' %}">Выйти в главное меню</a></h2>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+{% load blog_tags %}
+
+{% block title %}Редактирование статьи{% endblock %}
+
+{% block content %}
+<h1>Редактирование статьи</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Изменить</button>
+</form>
+{% endblock %}

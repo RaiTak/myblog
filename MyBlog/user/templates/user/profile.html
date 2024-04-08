@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Профиль{% endblock %}
+
+{% block content %}
+<h1>Профиль</h1>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if user.photo %}
+    <p><img src="{{ user.photo.url }}"></p>
+    {% else %}
+        <p>Нет картинки</p>
+    {% endif %}
+
+    {{ form.non_field_errors }}
+    {% for f in form %}
+        <p><label>{{ f.label }}</label>{{ f }}</p>
+        {{ f.errors }}
+    {% endfor %}
+
+    <p><button type="submit">Сохранить</button></p>
+</form>
+<hr>
+
+<p><a href="{% url 'user:password_change' %}">Смена пароля</a></p>
+{% endblock %}

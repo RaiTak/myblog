@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% load blog_tags %}
+
+{% block title %}Поиск{% endblock %}
+
+{% block content %}
+<h1>Поиск</h1>
+
+<form action="{% url 'blog:search' %}" method="get">
+    <input type="text" name="query" placeholder="Ключ...">
+    <button type="submit">Искать</button>
+</form>
+<hr>
+
+{% for post in posts %}
+    <h4><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h4>
+    <p>{{ post.body|markdown|truncatewords_html:30 }}</p>
+    <hr>
+{% empty %}
+    <p>Статьи не найдены.</p>
+{% endfor %}
+
+{% include 'blog/includes/paginator.html' %}
+
+{% endblock %}
